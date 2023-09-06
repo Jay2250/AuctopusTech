@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %} Welcome {% endblock title %}
+
+{% block content %}
+    <div class ="mt-6 px-6 py-6 bg-gray-100 rounded-xl">
+        <h2 class="mb-12 text-2xl text-center">Newest Books</h2>
+    
+        <div class="grid grid-cols-3 gap-2">
+             {% for item in items %}
+                <div class="card px-4" style="max-width: 500px; height: 700px;">
+                    <a href="{% url 'item:detail' item.id %}">
+                        <div >
+                            {% comment %} <img class="card-img-top rounded-t-xl bg-white" style="height: 350px; object-fit: contain; align-items: center; width: 100%;" src="{{item.image.url}}" alt="Card image cap"> {% endcomment %}
+                        </div>
+                        <div class="p-6 bg-white rounded-b-xl" style="height: 250px; line-height: 50px;">
+                            <h2 class="card-title text-2xl" style="font-size: medium; line-height: 20px;"><b>{{item.name}}</b></h2>
+                            <p class="card-text text-gray-500">Price : {{item.price}}</p>    
+                        </div>
+                    </a>
+                </div>
+             {% endfor %}
+        </div>
+    </div>
+    <div class="mt-6 px-6 py-6 bg-gray-100 rounded-xl">
+        <h2 class="mb-12 text-2xl text-center">Newest Books</h2>
+    
+        <div class="grid grid-cols-5 gap-2 margin-left-auto">
+            {% for category in categories %}
+                <div class="card px-4" style="max-width: 500px; height: 700px;">
+                    <a href="#">
+                        <div class="card-body p-6 bg-white rounded-b-xl" style="height: 100px; line-height: 50px;">
+                            <h2 class="card-title text-2xl" style="font-size: medium; line-height: 20px;"><b>{{category.name}}</b></h2>
+                            <p class="card-text text-gray-500">{{category.items.count}} Books</p>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
